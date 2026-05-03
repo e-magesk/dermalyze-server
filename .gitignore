@@ -1,0 +1,56 @@
+# ==========================================
+# DADOS SENSÍVEIS E UPLOADS
+# ==========================================
+# Ignora todo o conteúdo da pasta de imagens (fotos das lesões)
+images/*
+
+.env
+.env.*
+
+db_data/
+mysql/
+
+# ==========================================
+# PYTHON
+# ==========================================
+# Arquivos compilados
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Ferramentas de empacotamento e logs
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+parts/
+var/
+sdist/
+develop-eggs/
+.installed.cfg
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Ambientes virtuais
+venv/
+env/
+.venv/
+ENV/
+
+# ==========================================
+# IDEs E SISTEMA OPERACIONAL
+# ==========================================
+# VS Code
+.vscode/
+*.code-workspace
+
+# Outros editores
+.idea/
+*.swp
+*.swo
+
+# Mac/Windows
+.DS_Store
+Thumbs.db
