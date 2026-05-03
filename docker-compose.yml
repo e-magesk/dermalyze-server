@@ -3,7 +3,7 @@ version: '3.8'
 services:
   db:
     image: mysql:8.0
-    container_name: mysql_db
+    container_name: mysql_dermalyze
     environment:
       MYSQL_ROOT_PASSWORD: rootpassword
       MYSQL_DATABASE: app_db
@@ -16,7 +16,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin_ui
+    container_name: phpmyadmin_dermalyze
     environment:
       PMA_HOST: db
       MYSQL_ROOT_PASSWORD: rootpassword
@@ -27,19 +27,17 @@ services:
 
   api:
     build: .
-    container_name: fastapi_backend
+    container_name: backend_dermalyze
     ports:
       - "8000:8000"
     volumes:
       - ./app:/app
-      - ./images:/images # Mapeia a pasta local para não perder as fotos
+      - ./images:/images
     environment:
-      # String de conexão: driver://user:pass@host:port/dbname
       - DATABASE_URL=mysql+pymysql://api_user:api_password@db:3306/app_db
     depends_on:
       - db
-    # Inicia o servidor com hot-reload para facilitar o desenvolvimento
     command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 
 volumes:
-  db_data: # Volume nomeado para garantir que os dados do MySQL não sejam apagados
+  db_data:
