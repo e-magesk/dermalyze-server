@@ -35,7 +35,7 @@ class Image(Base):
     __tablename__ = "image"
     id = Column(Integer, primary_key=True, index=True)
     file_path = Column(String(255), nullable=False)
-    user_id = Column(Integer, ForeignKey("user.firebase_token"))
+    user_id = Column(String(255), ForeignKey("user.firebase_token"))
     clinical_info_id = Column(Integer, ForeignKey("clinical_info.id"))
     user = relationship("User", back_populates="images")
     clinical_info = relationship("ClinicalInfo", back_populates="image")
