@@ -12,25 +12,22 @@ class UserResponse(BaseModel):
     id: int
     full_name: str
     role: str
-    
+    firebase_token: str
     class Config:
         from_attributes = True
 
 class ClinicalInfoCreate(BaseModel):
     age: int
-    gender: str
     macro_body_region: str
     
     # Restrição rigorosa: a API só aceita esses 3 valores exatos
-    use_pesticide: Literal["sim", "nao", "nao_sei"]
-    family_skin_cancer_history: Literal["sim", "nao", "nao_sei"]
-    family_cancer_history: Literal["sim", "nao", "nao_sei"]
-    has_itched: Literal["sim", "nao", "nao_sei"]
-    has_grown: Literal["sim", "nao", "nao_sei"]
-    has_hurt: Literal["sim", "nao", "nao_sei"]
-    has_changed: Literal["sim", "nao", "nao_sei"]
-    has_bled: Literal["sim", "nao", "nao_sei"]
-    has_elevation: Literal["sim", "nao", "nao_sei"]
+    family_cancer_history: Literal["true", "false", "unknown"]
+    has_itched: Literal["true", "false", "unknown"]
+    has_grown: Literal["true", "false", "unknown"]
+    has_hurt: Literal["true", "false", "unknown"]
+    has_changed: Literal["true", "false", "unknown"]
+    has_bled: Literal["true", "false", "unknown"]
+    has_elevation: Literal["true", "false", "unknown"]
 
 class ClinicalInfoResponse(ClinicalInfoCreate):
     id: int
@@ -41,15 +38,15 @@ class ClinicalInfoResponse(ClinicalInfoCreate):
 @dataclass
 class ClinicalForm:
     age: int = Form(...)
-    gender: str = Form(...)
     macro_body_region: str = Form(...)
-    use_pesticide: Literal["sim", "nao", "nao_sei"] = Form(...)
-    family_skin_cancer_history: Literal["sim", "nao", "nao_sei"] = Form(...)
-    family_cancer_history: Literal["sim", "nao", "nao_sei"] = Form(...)
-    has_itched: Literal["sim", "nao", "nao_sei"] = Form(...)
-    has_grown: Literal["sim", "nao", "nao_sei"] = Form(...)
-    has_hurt: Literal["sim", "nao", "nao_sei"] = Form(...)
-    has_changed: Literal["sim", "nao", "nao_sei"] = Form(...)
-    has_bled: Literal["sim", "nao", "nao_sei"] = Form(...)
-    has_elevation: Literal["sim", "nao", "nao_sei"] = Form(...)
-    user_id: int = Form(...)
+    family_cancer_history: Literal["true", "false", "unknown"] = Form(...)
+    has_itched: Literal["true", "false", "unknown"] = Form(...)
+    has_grown: Literal["true", "false", "unknown"] = Form(...)
+    has_hurt: Literal["true", "false", "unknown"] = Form(...)
+    has_changed: Literal["true", "false", "unknown"] = Form(...)
+    has_bled: Literal["true", "false", "unknown"] = Form(...)
+    has_elevation: Literal["true", "false", "unknown"] = Form(...)
+    user_id: str = Form(...)
+    prediction: str = Form(...)
+    prediction_confidence: float = Form(...)
+    prediction_type: str = Form(...)

@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, Boolean
+from sqlalchemy import Column, Integer, String, ForeignKey, Float
 from sqlalchemy.orm import relationship
 from .database import Base
 
@@ -15,12 +15,9 @@ class ClinicalInfo(Base):
     
     id = Column(Integer, primary_key=True, index=True)
     age = Column(Integer, nullable=False)
-    gender = Column(String(20), nullable=False)
-    use_pesticide = Column(String(10), nullable=False)
-    family_skin_cancer_history = Column(String(10), nullable=False)
     family_cancer_history = Column(String(10), nullable=False)
     
-    macro_body_region = Column(String(100))
+    macro_body_region = Column(String(100), nullable=False)
     has_itched = Column(String(10), nullable=False)
     has_grown = Column(String(10), nullable=False)
     has_hurt = Column(String(10), nullable=False)
@@ -28,6 +25,10 @@ class ClinicalInfo(Base):
     has_bled = Column(String(10), nullable=False)
     has_elevation = Column(String(10), nullable=False)
     
+    prediction = Column(String(5), nullable=False)
+    prediction_confidence = Column(Float, nullable=False)
+    prediction_type = Column(String(10), nullable=False)
+
     # Relacionamento inverso com a Imagem
     image = relationship("Image", back_populates="clinical_info", uselist=False)
 
